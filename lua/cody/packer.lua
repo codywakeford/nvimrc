@@ -40,6 +40,7 @@ return require("packer").startup(function(use)
     use("jiangmiao/auto-pairs")
     use("tpope/vim-commentary")
     use("mbbill/undotree")
+    use({ "lewis6991/gitsigns.nvim", config = function() require("gitsigns").setup() end })
 
     -- Editor
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })

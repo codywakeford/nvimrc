@@ -4,6 +4,7 @@ vim.cmd([[
   autocmd VimEnter * Alpha
 ]])
 
+
 vim.cmd [[
   autocmd FileType javascript,typescript,vue,html,json setlocal formatprg=prettier
 ]]

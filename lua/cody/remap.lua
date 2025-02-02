@@ -12,7 +12,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 
 -- Tree
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeCreate<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>f', ':NvimTreeCollapse:<CR>', { noremap = true, silent = true })
 
