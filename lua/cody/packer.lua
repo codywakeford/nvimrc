@@ -26,6 +26,14 @@ return require("packer").startup(function(use)
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     })
+
+    -- Utils
+    --use("jiangmiao/auto-pairs")
+    use("tpope/vim-commentary")
+    use("mbbill/undotree")
+    use({ "lewis6991/gitsigns.nvim", config = function() require("gitsigns").setup() end })
+    use("sudormrfbin/cheatsheet.nvim")
+    use({ 'echasnovski/mini.nvim', version = '*' })
     use({
         "Pocco81/true-zen.nvim",
         config = function()
@@ -36,11 +44,15 @@ return require("packer").startup(function(use)
         end,
     })
 
-    -- Utils
-    use("jiangmiao/auto-pairs")
-    use("tpope/vim-commentary")
-    use("mbbill/undotree")
-    use({ "lewis6991/gitsigns.nvim", config = function() require("gitsigns").setup() end })
+
+    --Errors
+    use({
+        'nvimdev/lspsaga.nvim',
+        after = 'nvim-lspconfig',
+        config = function()
+            require('lspsaga').setup({})
+        end,
+    })
 
     -- Editor
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
@@ -49,37 +61,6 @@ return require("packer").startup(function(use)
     use("posva/vim-vue")
     use("cakebaker/scss-syntax.vim")
     use("sheerun/vim-polyglot")
-
-    -- use({
-    --     'pmizio/typescript-tools.nvim',
-    --     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    --     opts = {},
-    --     ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue' },
-    --     config = function()
-    --         require('typescript-tools').setup {
-    --             on_attach = function(client, bufnr)
-    --                 client.server_capabilities.documentFormattingProvider = false
-    --                 client.server_capabilities.documentRangeFormattingProvider = false
-    --             end,
-    --             filetypes = {
-    --                 'javascript',
-    --                 'javascriptreact',
-    --                 'typescript',
-    --                 'typescriptreact',
-    --                 'vue',
-    --             },
-    --             settings = {
-    --                 tsserver_plugins = {
-    --                     '@vue/typescript-plugin',
-    --                 },
-    --                 jsx_close_tag = {
-    --                     enable = true,
-    --                     filetypes = { 'javascriptreact', 'typescriptreact' },
-    --                 },
-    --             },
-    --         }
-    --     end,
-    -- })
 
     -- Completion
     use({
@@ -113,6 +94,27 @@ return require("packer").startup(function(use)
                         quit_on_open = true, -- Closes tree when opening a file
                     },
                 },
+            })
+        end,
+    })
+
+    -- Obsidian
+    use({
+        "epwalsh/obsidian.nvim",
+        tag = "*",
+        requires = {
+            "nvim-lua/plenary.nvim",
+
+        },
+        config = function()
+            require("obsidian").setup({
+                workspaces = {
+                    {
+                        name = "main",
+                        path = "/home/cody/Documents/Obsidian/Main/"
+                    },
+                },
+
             })
         end,
     })

@@ -38,16 +38,6 @@ lspconfig.eslint.setup({
             nodePath = '/home/cody/.nvm/versions/node/v18.20.5/bin/node',
         },
     },
-    on_attach = function(client, bufnr)
-        -- Enable virtual text for diagnostics
-        vim.diagnostic.config({
-            virtual_text = {
-                prefix = '●', -- You can customize this to any symbol
-                spacing = 0,
-            },
-            update_in_insert = true, -- Show diagnostics while typing in insert mode
-        })
-    end,
 })
 
 

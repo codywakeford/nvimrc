@@ -1,0 +1,12 @@
+-- -- Initialize lspsaga with your custom settings
+-- require('lspsaga').init_lsp_saga({
+--     -- Define keymaps for LSP functionalities
+--     keymaps = {
+--         -- Show type definition when you press <Leader>tt
+--         -- You can choose any keybinding you prefer
+--         ["<Leader>tt"] = "type_definition",
+--     },
+--     -- Other customization options if you like (optional)
+--     diagnostic_header = { "ERROR", "WARN", "INFO", "HINT" }, -- Labels for diagnostics
+--     border_style = "rounded",                              -- Optional: rounded borders for a cleaner look
+-- })

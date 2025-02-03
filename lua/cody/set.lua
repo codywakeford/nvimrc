@@ -22,13 +22,15 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 16
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
+vim.o.showtabline = 2
 vim.opt.updatetime = 50
-
+vim.o.cmdheight = 1
 vim.g.mapleader = " "
+
 
 vim.api.nvim_set_keymap('n', '<Leader>h', ':lua vim.lsp.buf.hover(<CR>', { noremap = true, silent = true })
 
@@ -67,7 +69,7 @@ vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>'
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
 -- Show diagnostics in a floating window
-vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.open_float(nil, { focusable = false })<CR>', opts)
 
 -- Show all diagnostics for the current buffer
 vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
