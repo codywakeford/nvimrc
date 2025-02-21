@@ -5,7 +5,8 @@ require("mason-lspconfig").setup({
     ensure_installed = {
         "eslint",
         "volar",
-        "lua_ls", },
+        "lua_ls", 
+    },
     automatic_installation = true,
 })
 
