@@ -1,14 +1,9 @@
-require("cody")
+require("core")
 
 
-vim.cmd([[
-  autocmd VimEnter * Alpha
-]])
-
-
-vim.cmd [[
-  autocmd FileType javascript,typescript,vue,html,json setlocal formatprg=prettier
-]]
+-- vim.cmd [[
+--   autocmd FileType javascript,typescript,vue,html,json setlocal formatprg=prettier
+-- ]]
 
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -22,10 +17,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 
-vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
-})
+-- vim.diagnostic.config({
+--   virtual_text = false,
+--   signs = true,
+--   underline = true,
+--   update_in_insert = false,
+--   severity_sort = true,
+-- })
