@@ -1,0 +1,1 @@
+const hello: number = "string"

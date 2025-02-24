@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>cg", ":CodeCompanionChat<CR>")
+vim.keymap.set("n", "<leader>cg", ":CodeCompanionChat Toggle<CR>")
 
 function config()
 	require("codecompanion").setup({

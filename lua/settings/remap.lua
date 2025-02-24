@@ -15,7 +15,12 @@ vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeCreate<CR>", options)
 vim.api.nvim_set_keymap("n", "<leader>f", ":NvimTreeCollapse:<CR>", options)
 
 -- Floats
-vim.keymap.set("n", "<leader>K", vim.diagnostic.open_float, { desc = "Show diagnostics (errors, warnings)" })
+vim.keymap.set(
+    "n",
+    "J",
+    vim.diagnostic.open_float,
+    { desc = "Show diagnostics (errors, warnings)"}
+)
 
 -- File
 vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", options)
@@ -67,29 +72,3 @@ vim.keymap.set("n", "<leader>ty", ":Lspsaga hover_doc<CR>", options)
 vim.keymap.set("n", "<leader>tt", ":Lspsaga term_toggle<CR>")
 vim.keymap.set("t", "<leader>tt", "<C-\\><C-n><C-\\><C-n>", { noremap = true })
 
-vim.keymap.set("n", "K", function()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local diagnostics = vim.diagnostic.get(bufnr, { lnum = vim.fn.line(".") - 1 })
-    local messages = {}
-
-    local ui = {
-        border = "rounded",
-        max_width = 80,
-        max_height = 20,
-    }
-
-    -- Collect diagnostic messages
-    for _, d in ipairs(diagnostics) do
-        table.insert(messages, d.message)
-    end
-
-    -- Get hover documentation
-    vim.lsp.buf.hover()
-
-    -- Open diagnostics float with hover info
-    if #messages > 0 then
-        vim.defer_fn(function()
-            vim.diagnostic.open_float(nil, ui)
-        end, 200) -- Small delay so both can be seen
-    end
-end, { noremap = true, silent = true })
