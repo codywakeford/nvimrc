@@ -14,13 +14,23 @@ vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", options)
 vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeCreate<CR>", options)
 vim.api.nvim_set_keymap("n", "<leader>f", ":NvimTreeCollapse:<CR>", options)
 
+-- Floats
+vim.keymap.set("n", "<leader>K", vim.diagnostic.open_float, { desc = "Show diagnostics (errors, warnings)" })
+
 -- File
 vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", options)
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:w<CR>a", options)
 
+-- Moving in vue files
+vim.keymap.set("n", "<leader>b", "/<script <CR>")
+vim.keymap.set("n", "<leader>n", "/<style lang=<CR>")
+
 -- Comments
 vim.api.nvim_set_keymap("n", "<C-#>", "gcc", options)
 vim.api.nvim_set_keymap("v", "<C-#>", "gcc", options)
+
+-- Quit
+vim.keymap.set("n", "<leader>X", ":wa<CR>:qa<CR>", { noremap = true, silent = true }) -- Save all & quit
 
 -- Zen
 vim.api.nvim_set_keymap("n", "<leader>zz", ":TZAtaraxis<CR>", options)

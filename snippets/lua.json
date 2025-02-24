@@ -4,5 +4,22 @@
 		"body": [
 			"lualualua"
 		]
+	},
+
+	initPlugin: {
+		prefix: "plugin",
+		body: [
+			"local dependencies = {}",
+			"",
+			"function config(),"
+			"",
+			"end",
+			"",
+			"return {"
+				"dependencies = dependencies,",
+				"config = config",
+			"}"
+		]
 	}
+
 }

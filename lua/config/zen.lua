@@ -2,9 +2,8 @@
 local zen_win = nil
 
 local options = {
-    width = 0.6
+    width = 0.6,
 }
-
 
 local function zen()
     vim.cmd("autocmd VimEnter * lua require'alpha.setup()")
@@ -38,7 +37,7 @@ end
 -- Toggle function for Zen Mode
 vim.api.nvim_create_autocmd("User", {
     pattern = "ToggleZenMode", -- Custom event name
-    callback = zen
+    callback = zen,
 })
 --
 -- vim.api.nvim_set_keymap("n", "<Leader>z", "", {
