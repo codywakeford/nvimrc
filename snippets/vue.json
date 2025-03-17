@@ -1,0 +1,27 @@
+{
+    "component": {
+        "prefix": "component",
+        "body": [
+            "<template>",
+            "    ",
+            "</template>",
+            "    ",
+            "",
+            "<script setup lang=\"ts\">",
+            "    ",
+            "</script>",
+            "",
+            "",
+            "<style scoped lang=\"scss\">",
+            "    ",
+            "</style>"
+        ]
+        "description": "",
+    },
+
+    "test": {
+        "prefix": "test",
+        "body": "hello",
+        "description": "hello",
+    }
+}

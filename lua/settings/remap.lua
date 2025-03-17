@@ -15,16 +15,16 @@ vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeCreate<CR>", options)
 vim.api.nvim_set_keymap("n", "<leader>f", ":NvimTreeCollapse:<CR>", options)
 
 -- Floats
-vim.keymap.set(
-    "n",
-    "J",
-    vim.diagnostic.open_float,
-    { desc = "Show diagnostics (errors, warnings)"}
-)
+vim.keymap.set("n", "J", vim.diagnostic.open_float, { desc = "Show diagnostics (errors, warnings)" })
 
 -- File
 vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", options)
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:w<CR>a", options)
+
+-- Find and Replace
+vim.keymap.set("n", "<leader>fr", function()
+	require("spectre").open()
+end, { desc = "Open Spectre" })
 
 -- Moving in vue files
 vim.keymap.set("n", "<leader>b", "/<script <CR>")
@@ -33,6 +33,11 @@ vim.keymap.set("n", "<leader>n", "/<style lang=<CR>")
 -- Comments
 vim.api.nvim_set_keymap("n", "<C-#>", "gcc", options)
 vim.api.nvim_set_keymap("v", "<C-#>", "gcc", options)
+
+-- Panes
+vim.keymap.set("n", "<M-h>", "<C-w>h", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-l>", "<C-w>l", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>v", ":vsp<CR> <C-w>l")
 
 -- Quit
 vim.keymap.set("n", "<leader>X", ":wa<CR>:qa<CR>", { noremap = true, silent = true }) -- Save all & quit
@@ -49,26 +54,9 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
--- Reload
-vim.keymap.set("n", "<leader>,", function()
-    -- Source the configuration
-    vim.cmd("source ~/.config/nvim/init.lua")
-
-    -- Print a message
-    vim.notify("Neovim config reloaded!", vim.log.levels.INFO)
-end, options)
-
 vim.keymap.set("n", "<leader>s", function()
-    vim.cmd(":w")
-    vim.notify("File Saved", vim.log.levels.INFO)
+	vim.cmd(":w")
+	vim.notify("File Saved", vim.log.levels.INFO)
 end, options)
 
-vim.keymap.set("n", "<leader>git", ":Git")
-
--- Error
-vim.keymap.set("n", "<leader>ty", ":Lspsaga hover_doc<CR>", options)
-
--- Terminal
-vim.keymap.set("n", "<leader>tt", ":Lspsaga term_toggle<CR>")
-vim.keymap.set("t", "<leader>tt", "<C-\\><C-n><C-\\><C-n>", { noremap = true })
-
+vim.keymap.set("n", "<leader>on", ":ObsidianNew <CR> ", { noremap = true, silent = true })

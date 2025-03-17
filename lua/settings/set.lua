@@ -5,14 +5,16 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.o.conceallevel = 1
-
+vim.g.lazy_load_plugins = false
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.breakindent = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -71,10 +73,10 @@ vim.api.nvim_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>"
 
 -- Show diagnostics in a floating window
 vim.api.nvim_set_keymap(
-    "n",
-    "<leader>e",
-    "<cmd>lua vim.lsp.diagnostic.open_float(nil, { focusable = false })<CR>",
-    opts
+	"n",
+	"<leader>e",
+	"<cmd>lua vim.lsp.diagnostic.open_float(nil, { focusable = false })<CR>",
+	opts
 )
 
 -- Show all diagnostics for the current buffer

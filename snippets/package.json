@@ -12,6 +12,10 @@
                 "language": ["javascript", "typescript"],
                 "path": "./typescript.json"
             },
+		{
+			"language": ["vue"],
+			"path": "./vue.json"
+		},
             {
                 "language": ["html"],
                 "path": "./html.json"
