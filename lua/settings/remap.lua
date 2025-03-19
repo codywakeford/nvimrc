@@ -14,6 +14,11 @@ vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", options)
 vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeCreate<CR>", options)
 vim.api.nvim_set_keymap("n", "<leader>f", ":NvimTreeCollapse:<CR>", options)
 
+vim.keymap.set("n", "j", "gj", { noremap = true })
+vim.keymap.set("n", "k", "gk", { noremap = true })
+vim.keymap.set("v", "j", "gj", { noremap = true })
+vim.keymap.set("v", "k", "gk", { noremap = true })
+
 -- Floats
 vim.keymap.set("n", "J", vim.diagnostic.open_float, { desc = "Show diagnostics (errors, warnings)" })
 

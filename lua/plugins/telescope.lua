@@ -81,11 +81,11 @@ function config()
 			file_ignore_patterns = {
 				"node_modules",
 				".nuxt",
+				".output/*",
 				"^cypress/",
-				"%.git/",
+				"^%.git/",
 				"%.lock",
 				"vendor/",
-				".git/*",
 				"%.lock",
 				"%.zip",
 				"%.tar.gz",

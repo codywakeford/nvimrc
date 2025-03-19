@@ -34,6 +34,7 @@ vim.o.showtabline = 2
 vim.opt.updatetime = 50
 vim.o.cmdheight = 1
 vim.g.mapleader = " "
+vim.g["snacks#cursorword#enable"] = 0
 
 vim.api.nvim_set_keymap("n", "<Leader>h", ":lua vim.lsp.buf.hover(<CR>", { noremap = true, silent = true })
 
