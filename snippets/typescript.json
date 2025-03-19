@@ -1,0 +1,219 @@
+{
+  "Console log": {
+    "prefix": "cl",
+    "body": ["console.log(${1:'Hello?'})"],
+    "description": "Log a message to the console"
+  },
+
+  "console trace": {
+    "prefix": "ct",
+    "body": ["console.trace(${1:'Hello?'})"]
+  },
+
+  "eventHandler": {
+    "prefix": "eventHandler",
+    "body": ["export default eventHandler(async (event) => {", "    $1", "})"]
+  },
+
+  "Pinia Store with TypeScript Interface": {
+    "prefix": "piniaStore",
+    "body": [
+      "interface $1State {",
+      "}",
+      "",
+      "export const use$1Store = defineStore(",
+      "    \"$1\",",
+      "    () => {",
+      "        const state = ref<$1State>({",
+      "",
+      "        })",
+      "",
+      "        return { state }",
+      "    },",
+      "    { persist: false },",
+      ")"
+    ],
+    "description": "Creates a Pinia store with a TypeScript interface"
+  },
+
+  "createError400": {
+    "prefix": "e400",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:400},",
+      "    statusMessage: \"${2:Bad Request}\",",
+      "})"
+    ]
+  },
+  "createError401": {
+    "prefix": "e401",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:401},",
+      "    statusMessage: \"${2:Unauthorized}\",",
+      "})"
+    ]
+  },
+  "createError403": {
+    "prefix": "e403",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:403},",
+      "    statusMessage: \"${2:Forbidden}\",",
+      "})"
+    ]
+  },
+  "createError404": {
+    "prefix": "e404",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:404},",
+      "    statusMessage: \"${2:Not Found}\",",
+      "})"
+    ]
+  },
+  "createError405": {
+    "prefix": "e405",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:405},",
+      "    statusMessage: \"${2:Method Not Allowed}\",",
+      "})"
+    ]
+  },
+  "createError408": {
+    "prefix": "e408",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:408},",
+      "    statusMessage: \"${2:Request Timeout}\",",
+      "})"
+    ]
+  },
+  "createError409": {
+    "prefix": "e409",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:409},",
+      "    statusMessage: \"${2:Conflict}\",",
+      "})"
+    ]
+  },
+  "createError410": {
+    "prefix": "e410",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:410},",
+      "    statusMessage: \"${2:Gone}\",",
+      "})"
+    ]
+  },
+  "createError411": {
+    "prefix": "e411",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:411},",
+      "    statusMessage: \"${2:Length Required}\",",
+      "})"
+    ]
+  },
+  "createError413": {
+    "prefix": "e413",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:413},",
+      "    statusMessage: \"${2:Payload Too Large}\",",
+      "})"
+    ]
+  },
+  "createError414": {
+    "prefix": "e414",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:414},",
+      "    statusMessage: \"${2:URI Too Long}\",",
+      "})"
+    ]
+  },
+  "createError415": {
+    "prefix": "e415",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:415},",
+      "    statusMessage: \"${2:Unsupported Media Type}\",",
+      "})"
+    ]
+  },
+  "createError416": {
+    "prefix": "e416",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:416},",
+      "    statusMessage: \"${2:Range Not Satisfiable}\",",
+      "})"
+    ]
+  },
+  "createError417": {
+    "prefix": "e417",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:417},",
+      "    statusMessage: \"${2:Expectation Failed}\",",
+      "})"
+    ]
+  },
+  "createError418": {
+    "prefix": "e418",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:418},",
+      "    statusMessage: \"${2:I'm a teapot}\",",
+      "})"
+    ]
+  },
+  "createError500": {
+    "prefix": "e500",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:500},",
+      "    statusMessage: \"${2:Internal Server Error}\",",
+      "})"
+    ]
+  },
+  "createError502": {
+    "prefix": "e502",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:502},",
+      "    statusMessage: \"${2:Bad Gateway}\",",
+      "})"
+    ]
+  },
+  "createError503": {
+    "prefix": "e503",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:503},",
+      "    statusMessage: \"${2:Service Unavailable}\",",
+      "})"
+    ]
+  },
+  "createError504": {
+    "prefix": "e504",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:504},",
+      "    statusMessage: \"${2:Gateway Timeout}\",",
+      "})"
+    ]
+  },
+  "createError505": {
+    "prefix": "e505",
+    "body": [
+      "throw createError({",
+      "    statusCode: ${1:505},",
+      "    statusMessage: \"${2:HTTP Version Not Supported}\",",
+      "})"
+    ]
+  }
+}
