@@ -215,5 +215,9 @@
       "    statusMessage: \"${2:HTTP Version Not Supported}\",",
       "})"
     ]
+  },
+  "trycatch": {
+    "prefix": "trycatch",
+    "body": ["try {", "    $1", "} catch(e) {", "", "}"]
   }
 }

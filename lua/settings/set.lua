@@ -58,7 +58,7 @@ vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts
 vim.api.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
 -- Signature help (e.g., function signature)
-vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+-- vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
 -- Rename symbol under cursor
 vim.api.nvim_set_keymap("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)

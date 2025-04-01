@@ -12,8 +12,8 @@ require("mason-lspconfig").setup({
 })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 local lsp_signature = require("lsp_signature")
+
 -- Setup LSPs
 lspconfig.volar.setup({
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
@@ -24,11 +24,13 @@ lspconfig.volar.setup({
 	},
 	fileWatching = true,
 
-	-- Function Sigs
 	on_attach = function(client, bufnr)
+		-- Function Sigs
 		lsp_signature.on_attach({
 			bind = true,
 		}, bufnr)
+
+		client.config.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 	end,
 })
 

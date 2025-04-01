@@ -174,13 +174,13 @@ return {
 			end,
 			desc = "Projects",
 		},
-		{
-			"<leader>fr",
-			function()
-				Snacks.picker.recent()
-			end,
-			desc = "Recent",
-		},
+		-- {
+		-- 	"<leader>fr",
+		-- 	function()
+		-- 		Snacks.picker.recent()
+		-- 	end,
+		-- 	desc = "Recent",
+		-- },
 		-- git
 		{
 			"<leader>gb",

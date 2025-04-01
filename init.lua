@@ -6,8 +6,30 @@ vim.cmd([[
 
 vim.diagnostic.config({
 	virtual_text = false,
-	signs = false,
+	signs = true,
+
 	underline = true,
-	update_in_insert = true,
 	severity_sort = true,
+
+	float = {
+		source = "always",
+		focusable = false,
+		border = "rounded",
+		format = function(diagnostic)
+			print(diagnostic)
+			return string.format("[%s] %s", diagnostic.source, diagnostic.message)
+		end,
+	},
 })
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+	if not result.diagnostics then
+		return
+	end
+
+	for _, diagnostic in ipairs(result.diagnostics) do
+		diagnostic.message = string.format("🔥 [TS]: %s", diagnostic.message)
+	end
+
+	vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+end
