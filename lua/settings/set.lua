@@ -36,11 +36,20 @@ vim.o.cmdheight = 1
 vim.g.mapleader = " "
 vim.g["snacks#cursorword#enable"] = 0
 
-vim.api.nvim_set_keymap("n", "<Leader>h", ":lua vim.lsp.buf.hover(<CR>", { noremap = true, silent = true })
-
--- LSP
--- Default LSP keybindings
 local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<Leader>h", ":lua vim.lsp.buf.hover(<CR>", opts)
+
+-- stop Persistence => session won't be saved on exit
+vim.keymap.set("n", "<leader>!", function()
+	require("persistence").stop()
+	vim.cmd("qa!")
+end)
+
+vim.keymap.set("n", "<leader>~", ":wa<CR>:qa<CR>", opts) -- Save all & quit
+--
+vim.api.nvim_set_keymap("n", "<Esc>[91;5u", ':echo "Right Ctrl + E pressed"<CR>', { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>vs", ":vsplit | enew<CR>", { noremap = false, silent = true }) -- New buffer in vertical split
 
 -- Go to definition
 vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -48,17 +57,8 @@ vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts
 -- Go to declaration
 vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 
--- Go to type definition
-vim.api.nvim_set_keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-
 -- Show references
 vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-
--- Show symbol information (hover)
-vim.api.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-
--- Signature help (e.g., function signature)
--- vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
 -- Rename symbol under cursor
 vim.api.nvim_set_keymap("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
@@ -72,16 +72,8 @@ vim.api.nvim_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>"
 -- Jump to previous diagnostic (error/warning)
 vim.api.nvim_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 
--- Show diagnostics in a floating window
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>e",
-	"<cmd>lua vim.lsp.diagnostic.open_float(nil, { focusable = false })<CR>",
-	opts
-)
+-- Jump to next placeholder
+vim.api.nvim_set_keymap("i", "<C-n>", [[<Cmd>lua require'luasnip'.jump(1)<Cr>]], opts)
 
--- Show all diagnostics for the current buffer
-vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-
--- Formatting the current buffer
-vim.api.nvim_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+-- Jump to previous placeholder
+vim.api.nvim_set_keymap("i", "<C-p>", [[<Cmd>lua require'luasnip'.jump(-1)<Cr>]], opts)

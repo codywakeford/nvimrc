@@ -1,35 +1,58 @@
 require("core")
 
 vim.cmd([[
-   autocmd FileType javascript,typescript,vue,html,json setlocal formatprg=prettier
+   autocmd FileType javascript,typescript,vue,html,json,markdown setlocal formatprg=prettier
 ]])
 
-vim.diagnostic.config({
-	virtual_text = false,
-	signs = true,
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		vim.cmd("tabnew")
+		vim.cmd("tabnew")
 
-	underline = true,
-	severity_sort = true,
+		vim.cmd("tabnew | terminal")
+		vim.cmd("tabnew | terminal")
 
-	float = {
-		source = "always",
-		focusable = false,
-		border = "rounded",
-		format = function(diagnostic)
-			print(diagnostic)
-			return string.format("[%s] %s", diagnostic.source, diagnostic.message)
-		end,
-	},
+		vim.cmd("tabfirst")
+	end,
 })
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
-	if not result.diagnostics then
-		return
-	end
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function(args)
+		if vim.bo[args.buf].buftype == "terminal" then
+			vim.opt_local.number = false
+			vim.opt_local.relativenumber = false
+		end
+	end,
+})
 
-	for _, diagnostic in ipairs(result.diagnostics) do
-		diagnostic.message = string.format("🔥 [TS]: %s", diagnostic.message)
-	end
+local move_mode = false
 
-	vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+-- Toggle the Move Mode
+function toggle()
+	move_mode = not move_mode
+
+	if M.move_mode then
+		print("Move Mode: ON 🚀")
+		vim.keymap.set("n", "h", "5h", { noremap = true, silent = true })
+		vim.keymap.set("n", "l", "5l", { noremap = true, silent = true })
+		vim.keymap.set("n", "j", "5j", { noremap = true, silent = true })
+		vim.keymap.set("n", "k", "5k", { noremap = true, silent = true })
+		vim.keymap.set("n", "w", "3w", { noremap = true, silent = true })
+		vim.keymap.set("n", "b", "3b", { noremap = true, silent = true })
+		vim.keymap.set("n", "q", M.toggle, { noremap = true, silent = true }) -- Exit Move Mode
+	else
+		print("Move Mode: OFF ❌")
+		vim.keymap.del("n", "h")
+		vim.keymap.del("n", "l")
+		vim.keymap.del("n", "j")
+		vim.keymap.del("n", "k")
+		vim.keymap.del("n", "w")
+		vim.keymap.del("n", "b")
+		vim.keymap.del("n", "q")
+	end
+end
+
+-- Setup the user command
+function setup()
+	vim.api.nvim_create_user_command("MoveMode", toggle, { nargs = 0 })
 end

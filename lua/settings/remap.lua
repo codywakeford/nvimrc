@@ -9,11 +9,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Tree
-vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", options)
-vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeCreate<CR>", options)
-vim.api.nvim_set_keymap("n", "<leader>f", ":NvimTreeCollapse:<CR>", options)
-
 vim.keymap.set("n", "j", "gj", { noremap = true })
 vim.keymap.set("n", "k", "gk", { noremap = true })
 vim.keymap.set("v", "j", "gj", { noremap = true })
@@ -49,9 +44,6 @@ vim.keymap.set("n", "<leader>X", ":wa<CR>:qa<CR>", { noremap = true, silent = tr
 
 -- Zen
 vim.api.nvim_set_keymap("n", "<leader>zz", ":TZAtaraxis<CR>", options)
-
--- Dashboard
-vim.keymap.set("n", "<leader>#", ":Alpha<CR>", options)
 
 -- Line Moving
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })

@@ -27,6 +27,12 @@ conform.setup({
 			"prettier",
 			stop_after_first = true,
 		},
+
+		jsonc = {
+			"prettierd",
+			"prettier",
+			stop_after_first = true,
+		},
 	},
 
 	format_on_save = {

@@ -96,13 +96,7 @@ return {
 	},
 	keys = {
 		-- Top Pickers & Explorer
-		{
-			"<leader><space>",
-			function()
-				Snacks.picker.smart()
-			end,
-			desc = "Smart Find Files",
-		},
+
 		{
 			"<leader>,",
 			function()
@@ -145,13 +139,6 @@ return {
 				Snacks.picker.buffers()
 			end,
 			desc = "Buffers",
-		},
-		{
-			"<leader>fc",
-			function()
-				Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
-			end,
-			desc = "Find Config File",
 		},
 		{
 			"<leader>ff",
@@ -524,20 +511,6 @@ return {
 				Snacks.notifier.hide()
 			end,
 			desc = "Dismiss All Notifications",
-		},
-		{
-			"<C-/>",
-			function()
-				Snacks.terminal()
-			end,
-			desc = "Toggle Terminal",
-		},
-		{
-			"<c-_>",
-			function()
-				Snacks.terminal()
-			end,
-			desc = "which_key_ignore",
 		},
 		{
 			"]]",

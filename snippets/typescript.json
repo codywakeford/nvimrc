@@ -219,5 +219,26 @@
   "trycatch": {
     "prefix": "trycatch",
     "body": ["try {", "    $1", "} catch(e) {", "", "}"]
+  },
+  "Controller Template": {
+    "prefix": "cfunc",
+    "body": [
+      "interface ${1:/capitalize(FunctionName)} {",
+      "    Params: { $2 }",
+      "    Return: Promise<{ uiMessage: UiMessage }>",
+      "}",
+      "",
+      "export const ${3:functionName}: Func<${1:/capitalize(FunctionName)}> = async (P) => {",
+      "    const { $2 } = P;",
+      "",
+      "    try {",
+      "",
+      "        return { uiMessage: nullUiMessage() };",
+      "    } catch (e) {",
+      "        return { uiMessage: uiError(5050) };",
+      "    }",
+      "}"
+    ],
+    "description": "Creates a controller function"
   }
 }

@@ -5,11 +5,8 @@ vim.api.nvim_set_keymap("n", "<leader>pt", ":lua SearchAndPeekDefinition()<CR>",
 function config()
 	local builtin = require("telescope.builtin")
 	require("telescope").load_extension("refactoring")
-	vim.keymap.set({ "n", "x" }, "<leader>rr", function()
-		require("telescope").extensions.refactoring.refactors()
-	end)
+
 	vim.keymap.set("n", "'", builtin.find_files, { desc = "Telescope find files" })
-	vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Telescope find files" })
 
 	vim.keymap.set("n", "@", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 
@@ -21,6 +18,18 @@ function config()
 		":lua require('telescope.builtin').find_files({cwd='" .. vault_path .. "'})<CR>",
 		{ noremap = true, silent = true }
 	)
+
+	vim.keymap.set("n", "<leader>fs", function()
+		require("telescope.builtin").find_files({
+			search_dirs = { "services" },
+		})
+	end, { desc = "Find files in predefined path" })
+
+	vim.keymap.set("n", "<leader>fc", function()
+		require("telescope.builtin").find_files({
+			search_dirs = { "controllers" },
+		})
+	end, { desc = "Find files in predefined path" })
 
 	vim.keymap.set("n", "<leader>ft", function()
 		require("telescope.builtin").find_files({

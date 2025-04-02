@@ -1,18 +1,21 @@
--- Diagnostics configuration
 vim.diagnostic.config({
-    virtual_text = {
-        prefix = "●", -- Custom icon for errors and warnings
-        spacing = 4, -- Add spacing between the error/warning and the line
-    },
-    signs = true, -- Enable diagnostic signs in the gutter
-    update_in_insert = true, -- Update diagnostics while typing in insert mode
-    underline = true, -- Underline errors and warnings
-    severity_sort = true, -- Sort diagnostics by severity (errors first)
-})
+	virtual_text = false,
+	signs = false,
+	update_in_insert = true,
 
--- Set custom diagnostic symbols in the gutter
-local signs = { Error = "✗", Warn = "⚠", Info = "ℹ", Hint = "💡" }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+	underline = true,
+	severity_sort = true,
+
+	float = {
+		source = "always",
+		focusable = false,
+
+		border = "rounded",
+
+		-- Add padding to the float window for more space around the text
+		padding = { left = 2, right = 2, top = 1, bottom = 1 },
+
+		max_width = 100,
+		max_height = 15,
+	},
+})

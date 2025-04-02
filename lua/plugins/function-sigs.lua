@@ -24,29 +24,15 @@ local config = function()
 		hint_prefix = "🔹 ",
 		handler_opts = { border = "single" },
 		toggle_key = "<C-k>",
-		max_width = 40,
+		max_height = 50,
+		max_width = 80,
 		auto_close_after = nil,
 		extra_trigger_chars = { "{", "(", "," },
 		hi_parameter = "IncSearch",
 		zindex = 50,
-		floating_window_off_x = 25, -- adjust float windows x position.
-		floating_window_off_y = function() -- adjust float windows y position. e.g. set to -2 can make floating window move up 2 lines
-			local linenr = vim.api.nvim_win_get_cursor(0)[1] -- buf line number
-			local pumheight = vim.o.pumheight
-			local winline = vim.fn.winline() -- line number in the window
-			local winheight = vim.fn.winheight(0)
 
-			-- window top
-			if winline - 1 < pumheight then
-				return pumheight
-			end
-
-			-- window bottom
-			if winheight - winline < pumheight then
-				return -pumheight
-			end
-			return 0
-		end,
+		floating_window_off_x = vim.o.columns - 0, -- Shift left from screen width
+		floating_window_off_y = 0,
 
 		decode_param = function(param)
 			local max_param_length = 200 -- Allow longer formatted JSON display
