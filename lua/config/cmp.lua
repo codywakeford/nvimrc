@@ -5,6 +5,7 @@ require("luasnip.loaders.from_vscode").lazy_load({
 })
 
 cmp.setup({
+
 	mapping = cmp.mapping.preset.insert({
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -26,5 +27,16 @@ cmp.setup({
 		{ name = "path" },
 	}),
 
-	window = {},
+	window = {
+		completion = {
+			border = "single",
+			col_offset = 0,
+			side_padding = 1,
+		},
+		documentation = {
+			border = "single",
+			col_offset = 0,
+			side_padding = 1,
+		},
+	},
 })

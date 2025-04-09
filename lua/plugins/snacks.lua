@@ -154,13 +154,13 @@ return {
 			end,
 			desc = "Find Git Files",
 		},
-		{
-			"<leader>fp",
-			function()
-				Snacks.picker.projects()
-			end,
-			desc = "Projects",
-		},
+		-- {
+		-- 	"<leader>0983509835",
+		-- 	function()
+		-- 		Snacks.picker.projects()
+		-- 	end,
+		-- 	desc = "Projects",
+		-- },
 		-- {
 		-- 	"<leader>fr",
 		-- 	function()

@@ -34,6 +34,10 @@ return {
 					stop_after_first = true,
 				},
 
+				go = {
+					"golines",
+				},
+
 				html = { "prettierd", "prettier" },
 			},
 

@@ -4,6 +4,10 @@ vim.cmd([[
    autocmd FileType javascript,typescript,vue,html,json,markdown setlocal formatprg=prettier
 ]])
 
+vim.keymap.set("n", "<leader>fp", function()
+	require("packages.telescope-project-picker").open_project()
+end, { desc = "Find project in ~/git and cd" })
+
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		vim.cmd("tabnew")

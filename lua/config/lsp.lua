@@ -14,16 +14,21 @@ require("mason-lspconfig").setup({
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lsp_signature = require("lsp_signature")
 
--- Setup LSPs
 lspconfig.volar.setup({
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 	init_options = {
+		hostInfo = "neovim",
 		vue = {
 			hybridMode = false,
 		},
+
+		preferences = {
+			importModuleSpecifier = "non-relative",
+		},
 	},
+
 	on_attach = function(client, bufnr)
-		-- Function Sigs
+		client.server_capabilities.documentFormattingProvider = false
 		lsp_signature.on_attach({
 			bind = true,
 		}, bufnr)
@@ -34,16 +39,23 @@ lspconfig.lua_ls.setup({
 	capabilities = capabilities,
 })
 
-lspconfig.eslint.setup({
+require("lspconfig").eslint.setup({
 	capabilities = capabilities,
 	filetypes = { "javascript", "typescript", "vue" },
 	settings = {
 		eslint = {
 			enable = true,
-			packageManager = "npm",
+			packageManager = "pnpm",
 			nodePath = "/home/cody/.nvm/versions/node/v18.20.5/bin/node",
+			run = "onType", -- run only on save/type to avoid constant spam
 		},
 	},
+	on_attach = function(client, bufnr)
+		local has_eslint_config = vim.fn.glob(".eslintrc*") ~= "" or vim.fn.filereadable("package.json") == 1
+		if not has_eslint_config then
+			client.stop() -- 🛑 Silently stop ESLint if no config is found
+		end
+	end,
 })
 
 lspconfig.cssls.setup({
@@ -69,7 +81,24 @@ vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
 end
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded", -- You can also use 'double', 'rounded', etc.
+	border = "single", -- You can also use 'double', 'rounded', etc.
 	max_width = 130, -- Adjust to your preferred width
 	max_height = 1030, -- Adjust the height to show more lines
+	side_padding = 1,
+})
+
+lspconfig.gopls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	settings = {
+		gopls = {
+			completeUnimported = true,
+			usePlaceholders = true,
+			analyses = {
+				unusedparams = true,
+			},
+		},
+	},
 })

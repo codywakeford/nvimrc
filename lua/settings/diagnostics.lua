@@ -10,12 +10,11 @@ vim.diagnostic.config({
 		source = "always",
 		focusable = false,
 
-		border = "rounded",
+		border = "single",
 
 		-- Add padding to the float window for more space around the text
-		padding = { left = 2, right = 2, top = 1, bottom = 1 },
+		padding = { left = 1, right = 1, top = 1, bottom = 1 },
 
 		max_width = 100,
-		max_height = 15,
 	},
 })

@@ -2,9 +2,18 @@ local dependencies = { "nvim-lua/plenary.nvim" }
 
 vim.api.nvim_set_keymap("n", "<leader>pt", ":lua SearchAndPeekDefinition()<CR>", { noremap = true, silent = true })
 
+local projectGlobs = {
+	"~/git/monorepo/core/*",
+	"~/git/monorepo/client/*",
+	"~/git/monorepo/templates/*",
+	"~/git/monorepo/docs",
+	"~/git/*",
+}
+
 function config()
 	local builtin = require("telescope.builtin")
 	require("telescope").load_extension("refactoring")
+	require("telescope").load_extension("git_worktree")
 
 	vim.keymap.set("n", "'", builtin.find_files, { desc = "Telescope find files" })
 
