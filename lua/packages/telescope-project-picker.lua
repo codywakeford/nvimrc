@@ -5,13 +5,14 @@ local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local previewers = require("telescope.previewers")
-local Job = require("plenary.job") -- Make sure you have plenary!
+local Job = require("plenary.job")
 
 local dirs = {
 	"~/git/",
 	"~/git/monorepo/core",
 	"~/git/monorepo/templates",
 	"~/git/monorepo/client",
+	"~/.config",
 }
 
 -- Expand tilde to full path
@@ -57,7 +58,7 @@ local function open_project()
 
 	pickers
 		.new({}, {
-			prompt_title = "Dev Projects",
+			prompt_title = "Projects",
 			finder = finders.new_table({
 				results = projects,
 				entry_maker = function(entry)

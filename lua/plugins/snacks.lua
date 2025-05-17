@@ -80,7 +80,7 @@ return {
 		input = { enabled = true },
 		notifier = {
 			enabled = true,
-			timeout = 2000,
+			timeout = 5000,
 		},
 		picker = { enabled = true },
 		quickfile = { enabled = true },
@@ -103,13 +103,6 @@ return {
 				Snacks.picker.buffers()
 			end,
 			desc = "Buffers",
-		},
-		{
-			"<leader>/",
-			function()
-				Snacks.picker.grep()
-			end,
-			desc = "Grep",
 		},
 		{
 			"<leader>:",

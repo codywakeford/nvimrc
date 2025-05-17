@@ -14,9 +14,6 @@ vim.keymap.set("n", "k", "gk", { noremap = true })
 vim.keymap.set("v", "j", "gj", { noremap = true })
 vim.keymap.set("v", "k", "gk", { noremap = true })
 
--- Floats
-vim.keymap.set("n", "J", vim.diagnostic.open_float, { desc = "Show diagnostics (errors, warnings)" })
-
 -- File
 vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", options)
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:w<CR>a", options)

@@ -24,6 +24,56 @@
     "description": "Log a message to the console"
   },
 
+  "ark-form": {
+    "prefix": "ark-form",
+    "body": ["<ark-form>$0</ark-form>"]
+  },
+
+  "ark-input": {
+    "prefix": "ark-input",
+    "body": ["<ark-input name=\"$1\">$0</ark-input>"]
+  },
+  "ark-errors": {
+    "prefix": "ark-errors",
+    "body": ["<ark-errors>$0</ark-errors>"]
+  },
+  "ark-label": {
+    "prefix": "ark-label",
+    "body": ["<ark-label>$0</ark-label>"]
+  },
+  "ark-aft": {
+    "prefix": "ark-aft",
+    "body": ["<ark-aft>$0</ark-aft>"]
+  },
+  "ark-fore": {
+    "prefix": "ark-fore",
+    "body": ["<ark-fore>$0</ark-fore>"]
+  },
+  "ark-email": {
+    "prefix": "ark-email",
+    "body": ["<ark-email>$0</ark-email>"]
+  },
+  "ark-password": {
+    "prefix": "ark-password",
+    "body": ["<ark-password>$0</ark-password>"]
+  },
+  "ark-confirm-password": {
+    "prefix": "ark-confirm-password",
+    "body": ["<ark-confirm-password>$0</ark-confirm-password>"]
+  },
+  "ark-submit": {
+    "prefix": "ark-submit",
+    "body": ["<ark-submit>$0</ark-submit>"]
+  },
+  "ark-crud": {
+    "prefix": "ark-crud",
+    "body": ["<ark-crud>$0</ark-crud>"]
+  },
+  "ark-group": {
+    "prefix": "ark-group",
+    "body": ["<ark-group>$0</ark-group>"]
+  },
+
   "console trace": {
     "prefix": "ct",
     "body": ["console.trace(${1:'Hello?'})"]
@@ -208,5 +258,111 @@
       "    statusMessage: \"${2:HTTP Version Not Supported}\",",
       "})"
     ]
+  },
+  "template": {
+    "prefix": "template",
+    "body": ["<template>\n  $0\n</template>"],
+    "description": "Creates a template wrapper for your Vue component"
+  },
+  "slot": {
+    "prefix": "slot",
+    "body": ["<slot name=\"$1\">$0</slot>"],
+    "description": "Creates a slot element for your Vue component"
+  },
+  "style": {
+    "prefix": "style",
+    "body": ["<style scoped>\n  $0\n</style>"],
+    "description": "Creates a style block for your Vue component with scoped styles"
+  },
+  "script": {
+    "prefix": "script",
+    "body": ["<script setup>\n  $0\n</script>"],
+    "description": "Creates a script block for your Vue component with the <script setup> syntax"
+  },
+  "slot-scope": {
+    "prefix": "slot-scope",
+    "body": ["<slot :name=\"$1\" :scope=\"$2\"></slot>"],
+    "description": "Creates a scoped slot for your Vue component"
+  },
+  "template-else": {
+    "prefix": "template-else",
+    "body": ["<template v-else>\n  $0\n</template>"],
+    "description": "Creates a <template> with v-else for conditional rendering"
+  },
+  "template-if": {
+    "prefix": "template-if",
+    "body": ["<template v-if=\"$1\">\n  $0\n</template>"],
+    "description": "Creates a <template> with v-if for conditional rendering"
+  },
+  "template-else-if": {
+    "prefix": "template-else-if",
+    "body": ["<template v-else-if=\"$1\">\n  $0\n</template>"],
+    "description": "Creates a <template> with v-else-if for conditional rendering"
+  },
+  "v-bind": {
+    "prefix": "v-bind",
+    "body": ["<div v-bind=\"$1\">\n  $0\n</div>"],
+    "description": "Creates a v-bind directive for dynamic binding in Vue"
+  },
+  "v-model": {
+    "prefix": "v-model",
+    "body": ["<input v-model=\"$1\" />"],
+    "description": "Creates a v-model binding for two-way data binding in Vue"
+  },
+  "v-for": {
+    "prefix": "v-for",
+    "body": [
+      "<ul>\n  <li v-for=\"item in $1\" :key=\"item.id\">\n    $0\n  </li>\n</ul>"
+    ],
+    "description": "Creates a v-for loop for rendering a list in Vue"
+  },
+  "nuxt-page": {
+    "prefix": "nuxt-page",
+    "body": ["<nuxt-page />"],
+    "description": "Creates a nuxt-page component"
+  },
+  "client-only": {
+    "prefix": "client-only",
+    "body": ["<client-only>$0</client-only>"],
+    "description": "Creates a client-only wrapper for components"
+  },
+  "nuxt-link": {
+    "prefix": "nuxt-link",
+    "body": ["<nuxt-link to=\"$1\">$0</nuxt-link>"],
+    "description": "Creates a nuxt-link component"
+  },
+  "nuxt-head": {
+    "prefix": "nuxt-head",
+    "body": [
+      "<nuxt-head>\n  <title>$1</title>\n  <meta name=\"description\" content=\"$2\">\n</nuxt-head>"
+    ],
+    "description": "Creates a nuxt-head component for setting page metadata"
+  },
+  "nuxt-layout": {
+    "prefix": "nuxt-layout",
+    "body": ["<nuxt-layout>$0</nuxt-layout>"],
+    "description": "Creates a nuxt-layout wrapper for layout-based components"
+  },
+  "no-ssr": {
+    "prefix": "no-ssr",
+    "body": ["<no-ssr>$0</no-ssr>"],
+    "description": "Creates a no-ssr wrapper for rendering on the client-side only"
+  },
+  "nuxt-error": {
+    "prefix": "nuxt-error",
+    "body": ["<nuxt-error :error=\"$1\" />"],
+    "description": "Creates a nuxt-error component to handle errors"
+  },
+  "server-prefetch": {
+    "prefix": "server-prefetch",
+    "body": [
+      "<template>\n  <div v-if=\"$isServer\">This runs on the server</div>\n</template>\n<script setup>\nconst $isServer = useNuxtApp().$isServer\n</script>"
+    ],
+    "description": "Creates a server-side prefetch logic in a component"
+  },
+  "teleport": {
+    "prefix": "teleport",
+    "body": ["<teleport to=\"$1\">\n  $0\n</teleport>"],
+    "description": "Creates a teleport wrapper for rendering content in a different location in the DOM"
   }
 }

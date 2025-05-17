@@ -45,6 +45,10 @@ vim.keymap.set("n", "<leader>!", function()
 	vim.cmd("qa!")
 end)
 
+vim.keymap.set("n", "<C-f>", function()
+	require("packages.telescope-project-picker").open_project()
+end, { desc = "Find project in ~/git and cd" })
+
 vim.keymap.set("n", "<leader>~", ":wa<CR>:qa<CR>", opts) -- Save all & quit
 --
 vim.api.nvim_set_keymap("n", "<Esc>[91;5u", ':echo "Right Ctrl + E pressed"<CR>', { noremap = true, silent = true })
@@ -77,3 +81,13 @@ vim.api.nvim_set_keymap("i", "<C-n>", [[<Cmd>lua require'luasnip'.jump(1)<Cr>]],
 
 -- Jump to previous placeholder
 vim.api.nvim_set_keymap("i", "<C-p>", [[<Cmd>lua require'luasnip'.jump(-1)<Cr>]], opts)
+
+-- Search for word on a line
+vim.keymap.set("n", "<leader>/", function()
+	local current_line = vim.fn.line(".")
+	vim.api.nvim_feedkeys("/\\%" .. current_line .. "l", "n", false)
+end, { desc = "Live search in current line" })
+
+vim.keymap.set("n", "J", function()
+	require("packages.hover").show_diagnostic_hover()
+end, { desc = "Hover diagnostic (Markdown)" })

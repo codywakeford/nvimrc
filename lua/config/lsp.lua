@@ -13,22 +13,28 @@ require("mason-lspconfig").setup({
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lsp_signature = require("lsp_signature")
+capabilities.workspace = {
+	didChangeWatchedFiles = {
+		dynamicRegistration = false,
+	},
+}
 
 lspconfig.volar.setup({
-	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "html" },
+
+	capabilities = capabilities,
+
 	init_options = {
-		hostInfo = "neovim",
+		maxTsServerMemory = 4096,
 		vue = {
 			hybridMode = false,
 		},
-
 		preferences = {
 			importModuleSpecifier = "non-relative",
 		},
 	},
 
 	on_attach = function(client, bufnr)
-		client.server_capabilities.documentFormattingProvider = false
 		lsp_signature.on_attach({
 			bind = true,
 		}, bufnr)
@@ -39,46 +45,25 @@ lspconfig.lua_ls.setup({
 	capabilities = capabilities,
 })
 
-require("lspconfig").eslint.setup({
-	capabilities = capabilities,
-	filetypes = { "javascript", "typescript", "vue" },
-	settings = {
-		eslint = {
-			enable = true,
-			packageManager = "pnpm",
-			nodePath = "/home/cody/.nvm/versions/node/v18.20.5/bin/node",
-			run = "onType", -- run only on save/type to avoid constant spam
-		},
-	},
-	on_attach = function(client, bufnr)
-		local has_eslint_config = vim.fn.glob(".eslintrc*") ~= "" or vim.fn.filereadable("package.json") == 1
-		if not has_eslint_config then
-			client.stop() -- 🛑 Silently stop ESLint if no config is found
-		end
-	end,
-})
-
 lspconfig.cssls.setup({
 	capabilities = capabilities,
-	filetypes = { "css", "scss", "less" },
+	filetypes = { "css", "less", "vue" },
+	root_dir = require("lspconfig.util").root_pattern("package.json", ".git", "nuxt.config.ts", "nuxt.config.js"),
+	settings = {
+		css = {
+			validate = true,
+		},
+		scss = {
+			validate = true,
+		},
+	},
 })
 
-vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
-	if not (result and result.contents) then
-		return
-	end
-
-	local contents = result.contents
-
-	-- Check if it's a markdown object, and if so, expand it
-	if type(contents) == "table" and contents.kind == "markdown" then
-		-- You can customize how to render markdown, or make this longer
-		contents.value = contents.value:gsub("\n", "\n\n")
-	end
-
-	-- Default behavior, but modified for wider content display
-	vim.lsp.util.open_floating_preview(contents, "markdown", config)
-end
+lspconfig.somesass_ls.setup({
+	capabilities = capabilities,
+	filetypes = { "scss", "sass", "vue" },
+	root_dir = require("lspconfig.util").root_pattern("package.json", ".git", "nuxt.config.ts", "nuxt.config.js"),
+})
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = "single", -- You can also use 'double', 'rounded', etc.
@@ -101,4 +86,20 @@ lspconfig.gopls.setup({
 			},
 		},
 	},
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "*",
+	callback = function()
+		for _, client in ipairs(vim.lsp.get_active_clients({ name = "volar" })) do
+			client.notify("workspace/didChangeWatchedFiles", {
+				changes = {
+					{
+						uri = vim.uri_from_bufnr(0),
+						type = 1, -- Created
+					},
+				},
+			})
+		end
+	end,
 })

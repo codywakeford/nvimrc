@@ -33,7 +33,7 @@ require("lualine").setup({
 				return require("auto-session.lib").current_session_name(true)
 			end,
 		},
-		lualine_c = { "filename" },
+		lualine_c = { "filename", path = 2 },
 		lualine_x = { "location" },
 		lualine_y = {},
 		lualine_z = { "location" },
